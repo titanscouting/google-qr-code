@@ -1,14 +1,7 @@
 <html>
     <head>
-        <style>
-            .centered {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            /* bring your own prefixes */
-            transform: translate(-50%, -50%);
-            }
-        </style>
+        <title>Titan Robotics Attendance QR Code Generator</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script type="text/javascript">
             function generateBarCode(nric) {
@@ -32,24 +25,29 @@
                 const name = data.name;
                 generateBarCode(email);
                 document.getElementById('barcode').style.display = 'block';
+                document.getElementById('name').text = name + " (" + email + ")";
+                document.getElementById('helptext').style.display = 'block';
             }
         </script>
     </head>
   <body>
-    <p>Note: this was written in 20 minutes, please email dsingh14 at illinois dot edu if there are major bugs.</p>
+    <h1>Titan Robotics Attendance QR Code Generator</h1>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <div id="g_id_onload"
+    <div id="g_id_onload" 
          data-client_id="822095376908-5548mbdhdids5u07nn2hsg26u5b456kl.apps.googleusercontent.com"
          data-callback="handleCredentialResponse">
     </div>
-    <div class="g_id_signin" data-type="standard"></div>
+    <h3>Sign in: </h3>
+    <div class="g_id_signin" data-type="standard" data-size="large" data-width="400"></div>
+    <p style="display: none;" id="helptext">Sign-in QR code for <a id="name"></a>:</p>
     <img id='barcode' 
         style="display: none;"
         class="centered"
-        src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" 
+        src="" 
         alt="" 
         title="HELLO" 
         width="300" 
         height="300" />
+    <p>Note: this was written in 20 minutes, please email dsingh14 at illinois dot edu if there are major bugs.</p>
   </body>
 </html>
